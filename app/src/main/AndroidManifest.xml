@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TrabalhoFinal"
+        tools:targetApi="31">
+        <activity
+            android:name=".TelaPedido.TelaPedidoEscolherProduto"
+            android:exported="false"
+            android:label="@string/title_activity_tela_pedido_escolher_produto"
+            android:theme="@style/Theme.TrabalhoFinal" />
+        <activity
+            android:name=".telaCliente.teste.teste"
+            android:exported="false"
+            android:label="@string/title_activity_teste"
+            android:theme="@style/Theme.TrabalhoFinal" />
+        <activity
+            android:name=".TelaPedido.TelaEscolherCliente"
+            android:exported="false"
+            android:label="@string/title_activity_tela_escolher_cliente"
+            android:theme="@style/Theme.TrabalhoFinal" />
+        <activity
+            android:name=".TelaPedido.TelaPedidoInserir"
+            android:exported="false"
+            android:label="@string/title_activity_tela_pedido_inserir"
+            android:theme="@style/Theme.TrabalhoFinal" />
+        <activity
+            android:name=".TelaPedido.TelaPedidoPrincipal"
+            android:exported="false"
+            android:label="@string/title_activity_tela_pedido_principal"
+            android:theme="@style/Theme.TrabalhoFinal" />
+        <activity
+            android:name=".telaProduto.TelaProdutoAtualizar"
+            android:exported="false"
+            android:label="@string/title_activity_tela_produto_atualizar"
+            android:theme="@style/Theme.TrabalhoFinal" />
+        <activity
+            android:name=".telaProduto.TelaProdutoInserir"
+            android:exported="false"
+            android:label="@string/title_activity_tela_produto_inserir"
+            android:theme="@style/Theme.TrabalhoFinal" />
+        <activity
+            android:name=".telaProduto.TelaProdutoMostrar"
+            android:exported="false"
+            android:label="@string/title_activity_tela_produto_mostrar"
+            android:theme="@style/Theme.TrabalhoFinal" />
+        <activity
+            android:name=".telaProduto.TelaProdutoPrincipal"
+            android:exported="false"
+            android:label="@string/title_activity_tela_produto_principal"
+            android:theme="@style/Theme.TrabalhoFinal" />
+        <activity
+            android:name=".telaCliente.TelaClienteAtualizar"
+            android:exported="false"
+            android:label="@string/title_activity_tela_cliente_atualizar"
+            android:theme="@style/Theme.TrabalhoFinal" />
+        <activity
+            android:name=".telaCliente.TelaClienteMostrar"
+            android:exported="false"
+            android:label="@string/title_activity_tela_cliente_mostrar"
+            android:theme="@style/Theme.TrabalhoFinal" />
+        <activity
+            android:name=".telaCliente.TelaClientePrincipal"
+            android:exported="false"
+            android:label="@string/title_activity_tela_principal"
+            android:theme="@style/Theme.TrabalhoFinal" />
+        <activity
+            android:name=".telaCliente.TelaClienteInserir"
+            android:exported="false"
+            android:label="@string/title_activity_tela_cliente_inserir"
+            android:theme="@style/Theme.TrabalhoFinal" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.TrabalhoFinal">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">TrabalhoFinal</string>
+    <string name="title_activity_tela_cliente_inserir">telaClienteInserir</string>
+    <string name="title_activity_tela_principal">TelaPrincipal</string>
+    <string name="title_activity_tela_cliente_mostrar">TelaClienteMostrar</string>
+    <string name="title_activity_tela_cliente_atualizar">TelaClienteAtualizar</string>
+    <string name="title_activity_tela_produto_principal">TelaProdutoPrincipal</string>
+    <string name="title_activity_tela_produto_mostrar">TelaProdutoMostrar</string>
+    <string name="title_activity_tela_produto_inserir">TelaProdutoInserir</string>
+    <string name="title_activity_tela_produto_atualizar">TelaProdutoAtualizar</string>
+    <string name="title_activity_tela_pedido_principal">TelaPedidoPrincipal</string>
+    <string name="title_activity_tela_pedido_inserir">TelaPedidoInserir</string>
+    <string name="title_activity_tela_escolher_cliente">TelaEscolherCliente</string>
+    <string name="title_activity_teste">teste</string>
+    <string name="title_activity_tela_pedido_escolher_produto">TelaPedidoEscolherProduto</string>
+</resources>

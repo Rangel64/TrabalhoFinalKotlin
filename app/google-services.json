@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "558913460706",
+    "project_id": "fabrica-de-sapato",
+    "storage_bucket": "fabrica-de-sapato.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558913460706:android:4ec271e16d19f8986001bb",
+        "android_client_info": {
+          "package_name": "com.example.trabalhofinal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "558913460706-a6n0p81hgck1kegmmrrssduj6uh4qhl9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAr0FsZAlvUaSdkQGEaNKNBXOCGDSx857Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "558913460706-a6n0p81hgck1kegmmrrssduj6uh4qhl9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
