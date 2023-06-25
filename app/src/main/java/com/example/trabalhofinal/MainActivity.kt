@@ -77,7 +77,7 @@ fun TelaPrincipal(name: String, modifier: Modifier = Modifier) {
             },
             modifier = Modifier.width(304.dp)
         ) {
-            Text(text = "Cliente")
+            Text(text = "Clientes")
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -88,7 +88,7 @@ fun TelaPrincipal(name: String, modifier: Modifier = Modifier) {
             },
             modifier = Modifier.width(304.dp)
         ) {
-            Text(text = "Produto")
+            Text(text = "Produtos")
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -99,7 +99,7 @@ fun TelaPrincipal(name: String, modifier: Modifier = Modifier) {
             },
             modifier = Modifier.width(304.dp)
         ) {
-            Text(text = "Pedido")
+            Text(text = "Pedidos")
         }
 
     }

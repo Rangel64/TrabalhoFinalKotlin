@@ -249,6 +249,5 @@ fun LoadingIndicator(){
                 .padding(8.dp)
         )
     }
-
 }
 
