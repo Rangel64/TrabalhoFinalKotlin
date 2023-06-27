@@ -24,8 +24,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenuItem
@@ -40,12 +38,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshots.Snapshot
-import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -68,19 +65,22 @@ import java.time.LocalDate
 class TelaPedidoInserir : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
-        var produtosAdicionados = SnapshotStateList<Produto>()
+        var produtosAdicionados = SnapshotStateMap<Produto,Int>()
         val register =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == RESULT_OK) {
                     result.data?.let {
                         if (it.hasExtra("lista_produtos_adicionados")) {
                             val listaRetorno =
-                                it.getSerializableExtra("lista_produtos_adicionados") as? ArrayList<Produto>
+                                it.getSerializableExtra("lista_produtos_adicionados") as? ArrayList<Map<Produto,Int>>
                             Log.i("Teste", "Teste1")
                             if (listaRetorno != null) {
                                 produtosAdicionados.clear()
                                 listaRetorno.forEach {item->
-                                    produtosAdicionados.add(item)
+                                    item.forEach{itemMap->
+                                        produtosAdicionados.put(key =itemMap.key, value = itemMap.value)
+
+                                    }
                                 }
 
                                 Log.i("Teste", produtosAdicionados.toString())
@@ -98,7 +98,7 @@ class TelaPedidoInserir : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
-                    Greeting10("Android", produtosAdicionados = produtosAdicionados,register = register)
+                    Greeting10("Android", produtosAdicionados = produtosAdicionados, register = register)
 
                 }
             }
@@ -110,11 +110,11 @@ class TelaPedidoInserir : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("MutableCollectionMutableState")
 @Composable
-fun Greeting10(name: String, modifier: Modifier = Modifier, produtosAdicionados: SnapshotStateList<Produto>, register: ActivityResultLauncher<Intent>) {
+fun Greeting10(name: String, modifier: Modifier = Modifier, produtosAdicionados: SnapshotStateMap<Produto, Int>, register: ActivityResultLauncher<Intent>) {
     var id_pedido by remember { mutableStateOf(TextFieldValue("")) }
     var data by remember { mutableStateOf(TextFieldValue("")) }
     var id_cliente by remember { mutableStateOf(TextFieldValue("")) }
-    var listaProdutos by remember { mutableStateOf<ArrayList<String>>(ArrayList()) }
+    var listaProdutos = HashMap<String,Int>()
     var clienteOk by remember { mutableStateOf(false) }
     var carregamento by remember{ mutableStateOf(true)}
     lateinit var referencia: DatabaseReference
@@ -127,7 +127,7 @@ fun Greeting10(name: String, modifier: Modifier = Modifier, produtosAdicionados:
     val contexto = LocalContext.current
     val produtoState = remember { mutableStateListOf<Produto>() }
     val produtoList = ArrayList<Produto>()
-    val produtoSelecionados = ArrayList<Produto>()
+    val produtoSelecionados = HashMap<Produto,Int>()
     var referenciaPedido = Firebase.database.getReference("/pedidos")
     val activity = (LocalContext.current as? Activity)
 
@@ -264,12 +264,15 @@ fun Greeting10(name: String, modifier: Modifier = Modifier, produtosAdicionados:
 //                            produtosAdicionados.add(item)
                         }
                         produtosAdicionados.forEach {item->
-                            produtoSelecionados.add(item)
+                            produtoSelecionados.put(item.key,item.value)
                         }
+                        val aux = ArrayList<Map<Produto,Int>>()
+                        aux.add(produtoSelecionados)
+                        Log.i("map",produtoSelecionados.toString())
                         register.launch(
                             Intent(contexto,TelaPedidoEscolherProduto::class.java).let {
                                 it.putExtra("lista_produto",produtoList)
-                                it.putExtra("lista_produtos_adicionados",produtoSelecionados)
+                                it.putExtra("lista_produtos_adicionados",aux)
                             }
                         ) },
                     modifier = Modifier.width(200.dp)
@@ -283,9 +286,10 @@ fun Greeting10(name: String, modifier: Modifier = Modifier, produtosAdicionados:
                     onClick = {
                         listaProdutos.clear()
                         produtosAdicionados.forEach {item->
-                            listaProdutos.add(item.id_produto)
+                            listaProdutos.put(key = item.key.id_produto, value = item.value)
                         }
-                        val pedido = Pedido(id_pedido.text,LocalDate.now().toString(),selectedText!!.cpf,listaProdutos as List<String>)
+                        val pedido = Pedido(id_pedido.text,LocalDate.now().toString(),selectedText!!.cpf,listaProdutos)
+                        Log.i("map",pedido.toString())
                         Log.i("pedido_teste",pedido.toString())
                         referenciaPedido.child(pedido.id_pedido).setValue(pedido)
                             .addOnSuccessListener {
